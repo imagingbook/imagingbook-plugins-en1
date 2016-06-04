@@ -20,6 +20,14 @@ import imagingbook.lib.ij.IjUtils;
 import imagingbook.lib.math.Matrix;
 import imagingbook.lib.settings.PrintPrecision;
 
+
+/**
+ * This plugin lists a user-selected ICC profile file
+ * to the console.
+ * 
+ * @author W. Burger
+ *
+ */
 public class ICC_Profile_Example implements PlugIn {
 
 	public void run(String arg0) {
@@ -65,8 +73,11 @@ public class ICC_Profile_Example implements PlugIn {
 		float[] XYZColor = iccColorSpace.toCIEXYZ(deviceColor);
 		IJ.log("XYZ = " + Matrix.toString(XYZColor));
 		
+		deviceColor = iccColorSpace.fromRGB(sRGBColor);
+		IJ.log("device color direct (check) = " + Matrix.toString(deviceColor));
+		
 		deviceColor = iccColorSpace.fromCIEXYZ(XYZColor);
-		IJ.log("device color (check) = " + Matrix.toString(deviceColor));
+		IJ.log("device color via XYZ (check) = " + Matrix.toString(deviceColor));
 		
 		// list sRGB Values:
 		for (int ri = 0; ri <= 10; ri++) {
