@@ -20,14 +20,13 @@ public class Transform_Spherical implements PlugInFilter {
         return DOES_ALL;
     }
 
-    public void run(ImageProcessor ip) {
-    	int w = ip.getWidth();
-    	int h = ip.getHeight();
-		
-		SphereMapping map = 
-				SphereMapping.makeInverseMapping(w / 2 + 10, h / 2, h / 2);
-		
+	public void run(ImageProcessor ip) {
+		int w = ip.getWidth();
+		int h = ip.getHeight();
+
+		SphereMapping map = new SphereMapping(w / 2 + 10, h / 2, h / 2);
+
 		map.applyTo(ip, InterpolationMethod.Bicubic);
-    }
+	}
 
 }

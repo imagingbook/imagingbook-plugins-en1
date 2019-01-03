@@ -20,15 +20,14 @@ public class Transform_Ripple implements PlugInFilter {
         return DOES_ALL;
     }
 
-    public void run(ImageProcessor ip) {
-		double xWavel = 120;
+	public void run(ImageProcessor ip) {
+		double xW = 120 / (2 * Math.PI);
 		double xAmpl = 10;
-		double yWavel = 250;
+		double yW = 250 / (2 * Math.PI);
 		double yAmpl = 10;
 
-		RippleMapping map = RippleMapping.makeInverseMapping(xWavel,xAmpl,yWavel,yAmpl);
-		
+		RippleMapping map = new RippleMapping(xW, xAmpl, yW, yAmpl);
 		map.applyTo(ip, InterpolationMethod.Bicubic);
-    }
+	}
 
 }

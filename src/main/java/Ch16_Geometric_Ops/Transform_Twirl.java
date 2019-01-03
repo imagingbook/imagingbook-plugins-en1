@@ -21,16 +21,16 @@ public class Transform_Twirl implements PlugInFilter {
         return DOES_ALL;
     }
 
-    public void run(ImageProcessor ip) {
-    	int w = ip.getWidth();
-    	int h = ip.getHeight();
-    	double xcenter = 0.5 * w;
+	public void run(ImageProcessor ip) {
+		int w = ip.getWidth();
+		int h = ip.getHeight();
+		double xcenter = 0.5 * w;
 		double ycenter = 0.5 * h;
-		double radius = Math.sqrt(xcenter*xcenter + ycenter*ycenter);
-		
-		TwirlMapping map = TwirlMapping.makeInverseMapping(xcenter, ycenter, angle, radius);
-		
+		double radius = Math.sqrt(xcenter * xcenter + ycenter * ycenter);
+
+		TwirlMapping map = new TwirlMapping(xcenter, ycenter, angle, radius);
+
 		map.applyTo(ip, InterpolationMethod.Bicubic);
-    }
+	}
 
 }
